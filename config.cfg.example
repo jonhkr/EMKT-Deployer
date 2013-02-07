@@ -1,0 +1,4 @@
+[FTP]
+host: ftp.example.com
+username: username
+password: secret
