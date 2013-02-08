@@ -46,7 +46,6 @@ for f in folders:
   if ftp.path.exists(f):
     if not ftp.path.isdir(f):
       raise Exception('%s exists on ftp server, but is not a directory' % f)
-    print('Dir exists %s' % f)
   else:
     print('Creating dir %s' % f)
     ftp.mkdir(f)
@@ -62,6 +61,9 @@ def uploadfiles(localpath, ftppath):
   for entry in os.listdir(localpath):
     localentrypath = '%s/%s' % (localpath, entry)
     ftpentrypath = '%s/%s' % (ftppath, entry)
+    if entry.startswith('.'):
+      print 'Skipping file %s' % localentrypath
+      continue
     if os.path.isdir(localentrypath):
       if ftp.path.exists(ftpentrypath):
         if not ftp.path.isdir(ftpentrypath):
