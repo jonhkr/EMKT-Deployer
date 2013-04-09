@@ -73,8 +73,8 @@ def uploadfiles(localpath, ftppath):
       uploadfiles(localentrypath, ftpentrypath)
       continue
     print('Uploading file %s' % ftpentrypath)
-    ftp.upload_if_newer(localentrypath, ftpentrypath)
+    ftp.upload_if_newer(localentrypath, ftpentrypath, 'b')
 
-uploadfiles(folder.rstrip('/'), ftp.getcwd())
+uploadfiles(args.folder.strip('/'), ftp.getcwd())
 
 print('Upload done: %s%s' % (httphost, ftp.getcwd()))
