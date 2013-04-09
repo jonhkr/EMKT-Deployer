@@ -9,7 +9,7 @@ setup(name='EMKT-Deployer',
       author="Jonas Trevisan",
       author_email="jonhkr@gmail.com",
       license="MIT",
-      packages=find_packages(),
       include_package_data=True,
-      install_requires = install_requires
+      install_requires = install_requires,
+      scripts = ['emktdeployer/emktdeployer']
     )

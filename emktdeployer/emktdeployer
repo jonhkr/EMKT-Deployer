@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 
 import argparse
+import os
 
-parser = argparse.ArgumentParser(description='Upload to FTP and litmus your email marketing.')
-parser.add_argument('-c', '--config', metavar='Config file')
+parser = argparse.ArgumentParser(description='Upload to FTP your emkt.')
 parser.add_argument('-f', '--folder', metavar='Email marketing folder')
 
 args = parser.parse_args()
 
-if not args.config or not args.folder:
+if not args.folder:
   parser.print_help()
   exit()
 
@@ -28,7 +28,7 @@ from ConfigParser import ConfigParser
 
 config = ConfigParser()
 
-with open(args.config) as f:
+with open("%s/%s" % (os.getenv("HOME"), '.emktdeploycfg')) as f:
   config.readfp(f)
 
 from ftputil import FTPHost
@@ -55,7 +55,6 @@ for f in folders:
 print 'Starting upload in dir %s' % ftp.getcwd()
 
 # Start uploding
-import os
 
 def uploadfiles(localpath, ftppath):
   for entry in os.listdir(localpath):
