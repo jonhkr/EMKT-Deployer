@@ -12,7 +12,7 @@ if not args.folder:
   parser.print_help()
   exit()
 
-folder = args.folder
+folder = args.folder.split('/')[-1]
 
 foldersplit = folder.split('-')
 if len(foldersplit) < 3:
